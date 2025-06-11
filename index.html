@@ -69,10 +69,11 @@
       position: relative;
     }
     .contador {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #333;
       text-align: center;
       word-wrap: break-word;
+      font-weight: bold;
     }
     .mensagem {
       margin-top: 1rem;
@@ -159,7 +160,7 @@
     </div>
     <div class="contador" id="contador"></div>
     <div class="mensagem">
-      Você é o amor da minha vida. Obrigado por cada momento, por cada sorriso e por estar ao meu lado. Feliz Dia dos Namorados! 💖
+      Caroline, você é o amor da minha vida. Obrigado por cada momento, por cada sorriso e por estar ao meu lado.<br>Feliz Dia dos Namorados! 💖
     </div>
   </div>
 
@@ -184,7 +185,7 @@
         const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutos = Math.floor((diff / (1000 * 60)) % 60);
         const segundos = Math.floor((diff / 1000) % 60);
-        contador.innerHTML = `Estamos juntos há: ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️`;
+        contador.innerHTML = `Estamos juntos há: <br> ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️`;
       }, 1000);
     }
 

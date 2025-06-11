@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Dia dos Namorados ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(#ffcccc, #ffe6e6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      overflow: hidden;
+    }
+    #inicio {
+      text-align: center;
+    }
+    #inicio button {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff4d4d;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #inicio button:hover {
+      background-color: #e60000;
+    }
+    #paginaSurpresa {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 1rem;
+    }
+    .carrossel {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .carrossel img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: contain;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      border-radius: 10px;
+    }
+    .carrossel img.ativo {
+      opacity: 1;
+      position: relative;
+    }
+    .contador {
+      font-size: 1.2rem;
+      color: #333;
+      text-align: center;
+      word-wrap: break-word;
+    }
+    .mensagem {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #fff0f5;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      color: #800000;
+      text-align: center;
+      max-width: 600px;
+    }
+    @media (max-width: 480px) {
+      #inicio button {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+      }
+      .contador {
+        font-size: 1rem;
+      }
+      .carrossel img {
+        max-height: 200px;
+      }
+    }
+    #heart-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: fall 8s linear;
+      opacity: 0.8;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes fall {
+      0% {
+        top: -10px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="inicio">
+    <h1>Oi, meu amor ❤️</h1>
+    <p>Tenho uma surpresa para você!</p>
+    <button onclick="mostrarSurpresa()">Iniciar Surpresa</button>
+  </div>
+
+  <div id="paginaSurpresa">
+    <div class="carrossel" id="carrossel">
+      <img src="imagens/20230726_172653.jpg" alt="nós dois" class="ativo" />
+      <img src="imagens/20231115_114124.jpg" alt="momentos" />
+      <img src="imagens/20240705_164506-01.jpeg" alt="amor" />
+    </div>
+    <div class="contador" id="contador"></div>
+    <div class="mensagem">
+      Você é o amor da minha vida. Obrigado por cada momento, por cada sorriso e por estar ao meu lado. Feliz Dia dos Namorados! 💖
+    </div>
+  </div>
+
+  <div id="heart-container"></div>
+
+  <script>
+    function mostrarSurpresa() {
+      document.getElementById('inicio').style.display = 'none';
+      document.getElementById('paginaSurpresa').style.display = 'flex';
+      iniciarContador();
+      iniciarCarrossel();
+      iniciarCoracoes();
+    }
+
+    function iniciarContador() {
+      const inicio = new Date("2023-03-19T09:00:00");
+      const contador = document.getElementById('contador');
+      setInterval(() => {
+        const agora = new Date();
+        const diff = agora - inicio;
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+        const segundos = Math.floor((diff / 1000) % 60);
+        contador.innerHTML = `Estamos juntos há: ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️`;
+      }, 1000);
+    }
+
+    function iniciarCarrossel() {
+      const imagens = document.querySelectorAll('#carrossel img');
+      let index = 0;
+      setInterval(() => {
+        imagens[index].classList.remove('ativo');
+        index = (index + 1) % imagens.length;
+        imagens[index].classList.add('ativo');
+      }, 3000);
+    }
+
+    function iniciarCoracoes() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        document.getElementById('heart-container').appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+      }, 300);
+    }
+  </script>
+</body>
+</html>

@@ -136,6 +136,7 @@
     }
   </style>
 </head>
+<audio id="musica" src="musica/SpotiDownloader.com - Estou Em Suas Mãos - KLB.mp3"></audio>
 <body>
   <div id="inicio">
     <h1>Oi, meu amor ❤️</h1>
@@ -170,6 +171,10 @@
       iniciarContador();
       iniciarCarrossel();
       iniciarCoracoes();
+
+      // Tocar música
+      const musica = document.getElementById('musica');
+      musica.play();
     }
 
     function iniciarContador() {
